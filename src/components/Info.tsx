@@ -87,7 +87,7 @@ const Div = styled.div`
     h2 {
       font-size: 4.4rem;
       line-height: 4.8rem;
-      max-width: 39rem;
+      max-width: 40rem;
       margin: 1.9rem 0 3.5rem;
     }
     p {

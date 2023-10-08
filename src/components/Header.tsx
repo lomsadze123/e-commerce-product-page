@@ -6,7 +6,17 @@ import close from "../assets/icon-close.svg";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const Header = ({ width }: { width: number }) => {
+const Header = ({
+  width,
+  setShowCart,
+  showCart,
+  saveCount,
+}: {
+  width: number;
+  saveCount: number;
+  setShowCart: (shotCart: boolean) => void;
+  showCart: boolean;
+}) => {
   const [hide, setHide] = useState(false);
 
   const variants = {
@@ -57,8 +67,14 @@ const Header = ({ width }: { width: number }) => {
           )}
         </div>
         <div className="right">
-          <img className="cart" src={cart} alt="cart icon" />
+          <img
+            onClick={() => setShowCart(!showCart)}
+            className="cart"
+            src={cart}
+            alt="cart icon"
+          />
           <img className="avatar" src={avatar} alt="avatar icon" />
+          {saveCount > 0 && <p className="notice">{saveCount}</p>}
         </div>
       </HeaderDiv>
       {width > 1200 && <Hr />}
@@ -87,6 +103,7 @@ const HeaderDiv = styled.header`
   }
   .right {
     gap: 2.4rem;
+    position: relative;
   }
   justify-content: space-between;
   img {
@@ -136,6 +153,16 @@ const HeaderDiv = styled.header`
     letter-spacing: 0.051rem;
     padding-bottom: 1.7rem;
   }
+  p {
+    background-color: #ff7d1a;
+    padding: 0.1rem 0.7rem;
+    border-radius: 0.9rem;
+    color: #fff;
+    position: absolute;
+    top: -0.4rem;
+    left: 1rem;
+    font-size: 1rem;
+  }
 
   @media (min-width: 1200px) {
     padding: 3.3rem 0 0;
@@ -183,6 +210,9 @@ const HeaderDiv = styled.header`
       gap: 4.5rem;
       padding-bottom: 3rem;
     }
+  }
+  p {
+    top: 1rem;
   }
 `;
 const Hr = styled.hr`

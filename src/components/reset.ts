@@ -12,6 +12,11 @@ const GlobalStyle = createGlobalStyle`
   html {
     font-size: 62.5%;
   }
+
+  body {
+    position: relative;
+  }
+
   h1 {
     font-family: 'Outfit', sans-serif;
   }

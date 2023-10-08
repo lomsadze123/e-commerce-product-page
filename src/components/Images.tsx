@@ -1,38 +1,98 @@
 import styled from "styled-components";
-import img1Big from "../assets/image-product-1.jpg";
-import img1small from "../assets/image-product-1-thumbnail.jpg";
-import img2Big from "../assets/image-product-2.jpg";
-import img2small from "../assets/image-product-2-thumbnail.jpg";
-import img3Big from "../assets/image-product-3.jpg";
-import img3small from "../assets/image-product-3-thumbnail.jpg";
-import img4Big from "../assets/image-product-4.jpg";
-import img4small from "../assets/image-product-4-thumbnail.jpg";
 import previous from "../assets/icon-previous.svg";
 import next from "../assets/icon-next.svg";
+import { imgListBig, imgListSmall } from "./ListImages";
+import { useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
 
-const Images = () => {
+const Images = ({
+  width,
+  setPress,
+  press,
+  setImgIndex,
+  imgIndex,
+}: {
+  width: number;
+  setPress: (press: boolean) => void;
+  press: boolean;
+  imgIndex: number;
+  setImgIndex: (setImgIndex: number) => void;
+}) => {
+  const controls = useAnimation();
+
+  const handleNext = () => {
+    if (imgIndex < 3) {
+      setImgIndex(imgIndex + 1);
+    } else {
+      setImgIndex(0);
+    }
+  };
+  console.log("das");
+
+  const handlePrevious = () => {
+    if (imgIndex === 0) {
+      setImgIndex(3);
+    } else {
+      setImgIndex(imgIndex - 1);
+    }
+  };
+
+  const variants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  };
+
+  useEffect(() => {
+    controls.start("hidden");
+    setTimeout(() => {
+      controls.start("visible");
+    }, 100);
+  }, []);
+
   return (
     <Div>
       <span className="parent">
-        <img src={img1Big} alt="various images" />
-        {/* <img src={img2Big} alt="various images" />
-        <img src={img3Big} alt="various images" />
-        <img src={img4Big} alt="various images" /> */}
-        <span>
-          <img src={img1small} alt="various images" />
-          <img src={img2small} alt="various images" />
-          <img src={img3small} alt="various images" />
-          <img src={img4small} alt="various images" />
-        </span>
+        {imgListBig.map(
+          (img, index) =>
+            index === imgIndex && (
+              <motion.img
+                onClick={() => setPress(true)}
+                src={img}
+                alt="various images"
+                key={img}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                variants={variants}
+                className="bigImage"
+              />
+            )
+        )}
+        {width > 1200 && (
+          <span>
+            {imgListSmall.map((img, index) => (
+              <Figure key={img} opacity={imgIndex === index}>
+                <Img
+                  opacity={!press && imgIndex === index}
+                  onClick={() => setImgIndex(index)}
+                  src={img}
+                  alt="various images"
+                />
+              </Figure>
+            ))}
+          </span>
+        )}
       </span>
-      {/* <article>
-        <div>
-          <img src={previous} alt="previous icon" />
-        </div>
-        <div>
-          <img src={next} alt="next icon" />
-        </div>
-      </article> */}
+      {(width < 1200 || press) && (
+        <article>
+          <div onClick={handlePrevious}>
+            <img src={previous} alt="previous icon" />
+          </div>
+          <div onClick={handleNext}>
+            <img src={next} alt="next icon" />
+          </div>
+        </article>
+      )}
     </Div>
   );
 };
@@ -71,10 +131,6 @@ const Div = styled.div`
     align-items: center;
   }
 
-  span span {
-    display: none;
-  }
-
   @media (min-width: 1200px) {
     img {
       max-width: 44.5rem;
@@ -94,9 +150,18 @@ const Div = styled.div`
       max-width: 9.2rem;
       border-radius: 1.2rem;
       transition: opacity 0.4s ease-out;
+      margin: -0.1rem 0 -0.3rem 0;
     }
     span span img:hover {
       opacity: 0.5;
     }
   }
+`;
+const Img = styled.img<{ opacity: boolean }>`
+  opacity: ${(props) => (props.opacity ? 0.5 : 1)};
+`;
+
+const Figure = styled.figure<{ opacity: boolean }>`
+  border: ${(props) => (props.opacity ? ".25rem solid #FF7D1A" : "")};
+  border-radius: 1.2rem;
 `;

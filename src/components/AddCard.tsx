@@ -1,7 +1,11 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-const AddCard = () => {
+const AddCard = ({
+  setSaveCount,
+}: {
+  setSaveCount: (saveCount: number) => void;
+}) => {
   const [count, setCount] = useState(0);
 
   return (
@@ -17,7 +21,13 @@ const AddCard = () => {
         <p>{count}</p>
         <button onClick={() => setCount(count + 1)}>+</button>
       </div>
-      <button className="btn">
+      <button
+        onClick={() => {
+          setSaveCount(count);
+          setCount(0);
+        }}
+        className="btn"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="18"
