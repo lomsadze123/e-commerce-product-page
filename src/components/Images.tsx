@@ -27,7 +27,6 @@ const Images = ({
       setImgIndex(0);
     }
   };
-  console.log("das");
 
   const handlePrevious = () => {
     if (imgIndex === 0) {
