@@ -2,6 +2,9 @@
 
 This is an E-Commerce Product Page for showcasing and purchasing products. It is a front-end project built with React and Styled Components for styling. The page is designed to provide a seamless and user-friendly experience for browsing and purchasing products.
 
+![image](https://github.com/lomsadze123/e-commerce-product-page/assets/91826108/0abebeb3-2d3c-463f-aab8-60e4eed792da)
+
+
 ## Setup
 1. Clone the Repository: Start by cloning the repository to your local machine using the following command:
 ```bash
