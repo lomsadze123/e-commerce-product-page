@@ -34,18 +34,20 @@ function App() {
 
   return (
     <Body>
-      <div className="relative">
+      <div>
         <Header
           width={width}
           setShowCart={setShowCart}
           showCart={showCart}
           saveCount={saveCount}
         />
-        <Cart
-          showCart={showCart}
-          saveCount={saveCount}
-          setSaveCount={setSaveCount}
-        />
+        <div className="relative">
+          <Cart
+            showCart={showCart}
+            saveCount={saveCount}
+            setSaveCount={setSaveCount}
+          />
+        </div>
       </div>
       <span className="span">
         <Images
@@ -130,7 +132,7 @@ const Body = styled.div`
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      z-index: 3;
+      z-index: 6;
       .bigImage {
         max-width: 55rem;
       }

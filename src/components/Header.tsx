@@ -74,7 +74,7 @@ const Header = ({
             alt="cart icon"
           />
           <img className="avatar" src={avatar} alt="avatar icon" />
-          {saveCount > 0 && <p className="notice">{saveCount}</p>}
+          {saveCount > 0 && <p>{saveCount}</p>}
         </div>
       </HeaderDiv>
       {width > 1200 && <Hr />}
@@ -129,7 +129,7 @@ const HeaderDiv = styled.header`
     left: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.75);
-    z-index: 1;
+    z-index: 6;
   }
   ul {
     color: #1d2025;
@@ -159,7 +159,7 @@ const HeaderDiv = styled.header`
     border-radius: 0.9rem;
     color: #fff;
     position: absolute;
-    top: -0.4rem;
+    top: -0.3rem;
     left: 1rem;
     font-size: 1rem;
   }
@@ -210,9 +210,9 @@ const HeaderDiv = styled.header`
       gap: 4.5rem;
       padding-bottom: 3rem;
     }
-  }
-  p {
-    top: 1rem;
+    p {
+      top: 1rem;
+    }
   }
 `;
 const Hr = styled.hr`

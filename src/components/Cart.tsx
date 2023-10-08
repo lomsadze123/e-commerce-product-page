@@ -55,7 +55,7 @@ const Div = styled.div`
   position: absolute;
   z-index: 5;
   right: 0.8rem;
-  top: 8.3rem;
+  top: 1rem;
   padding: 2.7rem 0 3.4rem 0;
   border-radius: 1rem;
   background-color: #fff;
@@ -116,5 +116,9 @@ const Div = styled.div`
   }
   span {
     font-weight: 700;
+  }
+
+  @media (min-width: 1200px) {
+    top: -12rem;
   }
 `;
