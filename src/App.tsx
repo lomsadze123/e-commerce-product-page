@@ -7,28 +7,26 @@ import { useEffect, useState } from "react";
 import Cart from "./components/Cart";
 
 function App() {
-  const [width, setWidth] = useState(window.innerWidth);
   const [press, setPress] = useState(false);
   const [imgIndex, setImgIndex] = useState<number>(0);
   const [showCart, setShowCart] = useState(false);
   const [saveCount, setSaveCount] = useState(0);
 
+  const [width, setWidth] = useState(false);
+
   useEffect(() => {
-    const handleWidth = () => {
-      setWidth(window.innerWidth);
+    const query = window.matchMedia("(min-width: 1200px)");
+
+    const handleQuery = (e: MediaQueryListEvent) => {
+      setWidth(e.matches);
     };
 
-    let timeOut: number;
+    query.addEventListener("change", handleQuery);
 
-    const debounce = () => {
-      clearTimeout(timeOut);
-      timeOut = setTimeout(handleWidth, 10);
-    };
-
-    window.addEventListener("resize", debounce);
+    setWidth(query.matches);
 
     return () => {
-      window.removeEventListener("resize", debounce);
+      query.removeEventListener("change", handleQuery);
     };
   }, []);
 
@@ -57,7 +55,7 @@ function App() {
           setImgIndex={setImgIndex}
           imgIndex={imgIndex}
         />
-        {press && width > 1200 && (
+        {press && width && (
           <div className="absolute">
             <svg
               onClick={() => setPress(false)}
@@ -72,7 +70,7 @@ function App() {
               />
             </svg>
             <Images
-              width={1201}
+              width={true}
               setPress={setPress}
               press={true}
               setImgIndex={setImgIndex}

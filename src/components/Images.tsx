@@ -12,7 +12,7 @@ const Images = ({
   setImgIndex,
   imgIndex,
 }: {
-  width: number;
+  width: boolean;
   setPress: (press: boolean) => void;
   press: boolean;
   imgIndex: number;
@@ -67,7 +67,7 @@ const Images = ({
               />
             )
         )}
-        {width > 1200 && (
+        {width && (
           <span>
             {imgListSmall.map((img, index) => (
               <Figure key={img} opacity={imgIndex === index}>
@@ -82,7 +82,7 @@ const Images = ({
           </span>
         )}
       </span>
-      {(width < 1200 || press) && (
+      {(!width || press) && (
         <article>
           <div onClick={handlePrevious}>
             <img src={previous} alt="previous icon" />

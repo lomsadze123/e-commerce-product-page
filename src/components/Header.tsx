@@ -12,7 +12,7 @@ const Header = ({
   showCart,
   saveCount,
 }: {
-  width: number;
+  width: boolean;
   saveCount: number;
   setShowCart: (shotCart: boolean) => void;
   showCart: boolean;
@@ -28,7 +28,7 @@ const Header = ({
     <>
       <HeaderDiv>
         <div>
-          {width < 1200 && (
+          {!width && (
             <img
               onClick={() => setHide(true)}
               className="menu"
@@ -37,10 +37,10 @@ const Header = ({
             />
           )}
           <h1>sneakers</h1>
-          {(width > 1200 || hide) && (
+          {(width || hide) && (
             <nav>
               <AnimatePresence>
-                {(width > 1200 || hide) && (
+                {(width || hide) && (
                   <motion.ul
                     initial="closed"
                     animate="open"
@@ -48,7 +48,7 @@ const Header = ({
                     variants={variants}
                     className="container"
                   >
-                    {width < 1200 && (
+                    {!width && (
                       <img
                         onClick={() => setHide(false)}
                         src={close}
@@ -77,7 +77,7 @@ const Header = ({
           {saveCount > 0 && <p>{saveCount}</p>}
         </div>
       </HeaderDiv>
-      {width > 1200 && <Hr />}
+      {width && <Hr />}
     </>
   );
 };
