@@ -8,7 +8,7 @@ This is an E-Commerce Product Page for showcasing and purchasing products. It is
 ## Setup
 1. Clone the Repository: Start by cloning the repository to your local machine using the following command:
 ```bash
-git clone https://github.com/lomsadze123/dictionary-web-app.git
+git clone https://github.com/lomsadze123/e-commerce-product-page.git
 ```
 2. Install Dependencies: Install the project dependencies using npm:
 ```bash
